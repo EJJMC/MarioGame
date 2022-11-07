@@ -11,6 +11,7 @@ public class PlayerMovements : MonoBehaviour
     // create general dynamic variables here..
     float xDirection;
     bool isNotGrounded = false;
+    string movement;
 
     // create constant variables here..
     [SerializeField] float playerSpeed = 5f;
@@ -19,6 +20,7 @@ public class PlayerMovements : MonoBehaviour
 
     void Start()
     {
+
         playerBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -27,6 +29,7 @@ public class PlayerMovements : MonoBehaviour
     void Update()
     {
         playerMovementHandler();
+        mobileController(movement);
     }
 
     private void playerMovementHandler()
@@ -62,6 +65,28 @@ public class PlayerMovements : MonoBehaviour
         }
     }
 
+    private void mobileController(string movement)
+    {
+        if(movement == "right")
+        {
+            playerBody.velocity = new Vector2(playerSpeed, playerBody.velocity.y);
+            transform.localScale = new Vector2(1, 1);
+        } else if (movement == "left")
+        {
+            playerBody.velocity = new Vector2(-playerSpeed, playerBody.velocity.y);
+            transform.localScale = new Vector2(-1, 1);
+        } else if (movement == "up")
+        {
+            playerBody.velocity = new Vector2(playerBody.velocity.x, jumpHeight);
+        } else if (movement == "down")
+        {
+            Debug.Log(movement);
+        } else if (movement == "stop")
+        {
+            playerBody.velocity = Vector2.zero;
+        }
+
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Once the player is on the ground level, the player should be able to jump.
@@ -77,5 +102,26 @@ public class PlayerMovements : MonoBehaviour
         {
             isNotGrounded = true;
         }
+    }
+
+    public void mobControllerUp()
+    {
+        movement = "up";
+    }
+    public void mobControllerDown()
+    {
+        movement = "down";
+    }
+    public void mobControllerLeft()
+    {
+        movement = "left";
+    }
+    public void mobControllerRight()
+    {
+        movement = "right";
+    }
+    public void releaseController()
+    {
+        movement = "stop";
     }
 }
