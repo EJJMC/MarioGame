@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovements : MonoBehaviour
 {
@@ -15,7 +17,9 @@ public class PlayerMovements : MonoBehaviour
 
     // create constant variables here..
     [SerializeField] float playerSpeed = 5f;
-    [SerializeField] float jumpHeight = 7f;
+    [SerializeField] float jumpHeight = 14f;
+    int playerMaxHealth = 2;
+
 
 
     void Start()
@@ -69,13 +73,14 @@ public class PlayerMovements : MonoBehaviour
     {
         if(movement == "right")
         {
+
             playerBody.velocity = new Vector2(playerSpeed, playerBody.velocity.y);
             transform.localScale = new Vector2(1, 1);
         } else if (movement == "left")
         {
             playerBody.velocity = new Vector2(-playerSpeed, playerBody.velocity.y);
             transform.localScale = new Vector2(-1, 1);
-        } else if (movement == "up")
+        } else if (movement == "up" && !isNotGrounded)
         {
             playerBody.velocity = new Vector2(playerBody.velocity.x, jumpHeight);
         } else if (movement == "down")
@@ -83,7 +88,7 @@ public class PlayerMovements : MonoBehaviour
             Debug.Log(movement);
         } else if (movement == "stop")
         {
-            playerBody.velocity = Vector2.zero;
+            // playerBody.velocity = Vector2.zero;
         }
 
     }
@@ -93,6 +98,26 @@ public class PlayerMovements : MonoBehaviour
         if (collision.gameObject.CompareTag("ground"))
         {
             isNotGrounded = false;
+        }
+
+        if (collision.collider.tag == "enemyjumpkill") {
+            Debug.Log("enemy died!");
+            Destroy(collision.collider.transform.parent.gameObject);
+        }
+        else if (collision.collider.tag == "enemy")
+        {
+            Debug.Log("Collision");
+            if (playerMaxHealth == 2)
+            {
+                playerMaxHealth -= 1;
+            }
+            else if (playerMaxHealth == 1)
+            {
+                // Destroy(gameObject);
+                int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+                PlayerPrefs.SetInt("restartlevelat", currentSceneIndex);
+                SceneManager.LoadScene(1);
+            }
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -124,4 +149,5 @@ public class PlayerMovements : MonoBehaviour
     {
         movement = "stop";
     }
+
 }
