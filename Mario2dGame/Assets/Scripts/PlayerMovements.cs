@@ -15,7 +15,7 @@ public class PlayerMovements : MonoBehaviour
 
     // create constant variables here..
     [SerializeField] float playerSpeed = 5f;
-    [SerializeField] float jumpHeight = 7f;
+    [SerializeField] float jumpHeight = 14f;
 
 
     void Start()
@@ -69,13 +69,14 @@ public class PlayerMovements : MonoBehaviour
     {
         if(movement == "right")
         {
+
             playerBody.velocity = new Vector2(playerSpeed, playerBody.velocity.y);
             transform.localScale = new Vector2(1, 1);
         } else if (movement == "left")
         {
             playerBody.velocity = new Vector2(-playerSpeed, playerBody.velocity.y);
             transform.localScale = new Vector2(-1, 1);
-        } else if (movement == "up")
+        } else if (movement == "up" && !isNotGrounded)
         {
             playerBody.velocity = new Vector2(playerBody.velocity.x, jumpHeight);
         } else if (movement == "down")
@@ -83,7 +84,7 @@ public class PlayerMovements : MonoBehaviour
             Debug.Log(movement);
         } else if (movement == "stop")
         {
-            playerBody.velocity = Vector2.zero;
+            // playerBody.velocity = Vector2.zero;
         }
 
     }
