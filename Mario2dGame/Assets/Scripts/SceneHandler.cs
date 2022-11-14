@@ -25,19 +25,19 @@ public class SceneHandler : MonoBehaviour
     // Jump to first level
     public void goToLevelOne()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     // Jump to first level
     public void goToLevelTwo()
     {
-        // SceneManager.LoadScene(1);
+        // SceneManager.LoadScene(3);
     }
 
     // Jump to first level
     public void goToLevelThree()
     {
-        // SceneManager.LoadScene(1);
+        // SceneManager.LoadScene(4);
     }
 
     /*
@@ -49,7 +49,7 @@ public class SceneHandler : MonoBehaviour
      */
     public void goToEndGame()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
     // Jump to next scene
@@ -61,12 +61,38 @@ public class SceneHandler : MonoBehaviour
     // Restart the game.
     public void restartGameScene() 
     {
-
+        SceneManager.LoadScene(2);
     }
 
     // Restart the level
     public void restartLevelScene()
     {
+        int lastScene = PlayerPrefs.GetInt("restartlevelat");
 
+        if(lastScene > 0 && lastScene != -1)
+        {
+            SceneManager.LoadScene(lastScene);
+        } else
+        {
+            Debug.Log("Scene not found");
+            Debug.Log(lastScene);
+        }
     }
+
+    // Script to handle menu scene.
+    public void menuHandler()
+    {
+        int getCurrentScene = SceneManager.GetActiveScene().buildIndex;
+        PlayerPrefs.SetInt("Current Scene", getCurrentScene);
+        SceneManager.LoadScene(1);
+    }
+
+    // Functions for development and testing purposes and not for production purpose.
+    public void devJumpToEndGame()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        PlayerPrefs.SetInt("restartlevelat", currentSceneIndex);
+        goToEndGame();
+    }
+
 }
