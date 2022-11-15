@@ -8,7 +8,7 @@ public class PlayerMovements : MonoBehaviour
 {
     // Create Class and interface variables here..
     Rigidbody2D playerBody;
-    SpriteRenderer spriteRenderer;
+    public AudioSource playerJumpEFX;
 
     // create general dynamic variables here..
     float xDirection;
@@ -24,9 +24,7 @@ public class PlayerMovements : MonoBehaviour
 
     void Start()
     {
-
         playerBody = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -36,6 +34,7 @@ public class PlayerMovements : MonoBehaviour
         mobileController(movement);
     }
 
+    // Private methods
     private void playerMovementHandler()
     {
         bool keyS = Input.GetKeyDown(KeyCode.S);
@@ -47,45 +46,41 @@ public class PlayerMovements : MonoBehaviour
         // Flip the direction of the player when moving towards the left and right.
         if(xDirection < 0)
         {
-            //spriteRenderer.flipX = true;
-            transform.localScale = new Vector2(-1, 1);
+            moveLeftAction();
         } 
         else if (xDirection > 0)
         {
-            //spriteRenderer.flipX = false;
-            transform.localScale = new Vector2(1, 1);
+            moveRightAction();
         }
 
         // If "W" is clicked, perform jump or upward movement
         if (keyW && !isNotGrounded)
         {
-            playerBody.velocity = new Vector2(playerBody.velocity.x, jumpHeight);
+            jumpAction();
         }
 
         // If "S" is clicked, perform duck or downward movement
         if (keyS)
         {
-            Debug.Log("Duck!");
+            duckAction();
         }
     }
-
     private void mobileController(string movement)
     {
         if(movement == "right")
         {
-
             playerBody.velocity = new Vector2(playerSpeed, playerBody.velocity.y);
-            transform.localScale = new Vector2(1, 1);
+            moveRightAction();
         } else if (movement == "left")
         {
             playerBody.velocity = new Vector2(-playerSpeed, playerBody.velocity.y);
-            transform.localScale = new Vector2(-1, 1);
+            moveLeftAction();
         } else if (movement == "up" && !isNotGrounded)
         {
-            playerBody.velocity = new Vector2(playerBody.velocity.x, jumpHeight);
+            jumpAction();
         } else if (movement == "down")
         {
-            Debug.Log(movement);
+            duckAction();
         } else if (movement == "stop")
         {
             // playerBody.velocity = Vector2.zero;
@@ -128,7 +123,33 @@ public class PlayerMovements : MonoBehaviour
             isNotGrounded = true;
         }
     }
+    private void jumpAction()
+    {
+        bool efxOnPresPrefs = (PlayerPrefs.GetInt("efxon") != 0);
+        float efxVolPresPrefs = PlayerPrefs.GetFloat("gameefx");
+        if (efxOnPresPrefs)
+        {
+            Debug.Log(playerJumpEFX);
+            Debug.Log(efxVolPresPrefs);
+            playerJumpEFX.volume = efxVolPresPrefs;
+            playerJumpEFX.Play();
+        }
+        playerBody.velocity = new Vector2(playerBody.velocity.x, jumpHeight);
+    }
+    private void duckAction()
+    {
+        Debug.Log("Duck");
+    }
+    private void moveLeftAction()
+    {
+        transform.localScale = new Vector2(-1, 1);
+    }
+    private void moveRightAction()
+    {
+        transform.localScale = new Vector2(1, 1);
+    }
 
+    // Public methods
     public void mobControllerUp()
     {
         movement = "up";

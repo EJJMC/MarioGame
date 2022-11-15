@@ -16,28 +16,35 @@ public class SceneHandler : MonoBehaviour
      *
      */
 
+    private int startMenuScreen = 0;
+    private int endGameScreen = 1;
+    private int settingsScreen = 2;
+    private int levelOne = 3;
+    private int levelTwo = 4;
+    private int levelThree = 5;
+
     // Jump to start screen
     public void goToStartScreen()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(startMenuScreen);
     }
 
     // Jump to first level
     public void goToLevelOne()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(levelOne);
     }
 
     // Jump to first level
     public void goToLevelTwo()
     {
-        // SceneManager.LoadScene(3);
+        SceneManager.LoadScene(levelTwo);
     }
 
     // Jump to first level
     public void goToLevelThree()
     {
-        // SceneManager.LoadScene(4);
+        SceneManager.LoadScene(levelThree);
     }
 
     /*
@@ -49,7 +56,7 @@ public class SceneHandler : MonoBehaviour
      */
     public void goToEndGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(endGameScreen);
     }
 
     // Jump to next scene
@@ -61,7 +68,7 @@ public class SceneHandler : MonoBehaviour
     // Restart the game.
     public void restartGameScene() 
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(levelOne);
     }
 
     // Restart the level
@@ -84,7 +91,7 @@ public class SceneHandler : MonoBehaviour
     {
         int getCurrentScene = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("Current Scene", getCurrentScene);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     // Functions for development and testing purposes and not for production purpose.
@@ -93,6 +100,11 @@ public class SceneHandler : MonoBehaviour
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("restartlevelat", currentSceneIndex);
         goToEndGame();
+    }
+
+    public void goToSettings()
+    {
+        SceneManager.LoadScene(settingsScreen);
     }
 
 }

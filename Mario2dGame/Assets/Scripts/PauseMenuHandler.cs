@@ -35,4 +35,10 @@ public class PauseMenuHandler : MonoBehaviour
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex);
     }
+
+    // Settings home handler
+    public void backToHome()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
