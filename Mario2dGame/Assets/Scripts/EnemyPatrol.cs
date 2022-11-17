@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
 {
-    public float walkSpeed, range, timeBTWShots, shootSpeed;
+    public float walkSpeed, range;
     public bool isPatrol;
     private bool doTurn;
     private float distToPlayer;
-    private bool canShoot;
+    // private bool canShoot;
 
     private Rigidbody2D enemyBody;
     public LayerMask ground;
@@ -16,15 +16,15 @@ public class EnemyPatrol : MonoBehaviour
     public Transform groundCheck;
     public Collider2D bodyCollider;
     public Transform player;
-    public Transform shootPos;
-    public GameObject bullet;
+    // public Transform shootPos;
+    // public GameObject bullet;
 
     // Start is called before the first frame update
     void Start()
     {
         enemyBody = GetComponent<Rigidbody2D>();
         isPatrol = true;
-        canShoot = true;
+        // canShoot = true;
     }
 
     // Update is called once per frame
@@ -44,8 +44,8 @@ public class EnemyPatrol : MonoBehaviour
                 Flip();
             }
 
-            if(canShoot)
-                StartCoroutine(AttackPlayer());
+            // if(canShoot)
+                // StartCoroutine(AttackPlayer());
             isPatrol = false;
 
         } else
@@ -82,7 +82,7 @@ public class EnemyPatrol : MonoBehaviour
         isPatrol = true;
     }
 
-    IEnumerator AttackPlayer()
+    /*IEnumerator AttackPlayer()
     {
         canShoot = false;
         yield return new WaitForSeconds(timeBTWShots);
@@ -92,5 +92,5 @@ public class EnemyPatrol : MonoBehaviour
 
         newBullet.GetComponent<Rigidbody>().velocity = new Vector2(shootSpeed * walkSpeed * Time.fixedDeltaTime, 0f);
         canShoot = true;
-    }
+    }*/
 }
