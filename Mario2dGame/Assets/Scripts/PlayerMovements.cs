@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMovements : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class PlayerMovements : MonoBehaviour
     [SerializeField] float jumpHeight = 14f;
     int playerMaxHealth = 2;
 
+    private int count = 0;
+    public Text countText;
 
 
     void Start()
@@ -117,7 +120,13 @@ public class PlayerMovements : MonoBehaviour
 
         if(collision.collider.tag == "donewithyou")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if(count == 3)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            } else
+            {
+                Debug.Log("Player has to collect 3 keys");
+            }
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -176,4 +185,14 @@ public class PlayerMovements : MonoBehaviour
         movement = "stop";
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("collectible"))
+        {
+            count++;
+            Debug.Log(count);
+            countText.text = count.ToString();
+            Destroy(collision.gameObject);
+        }
+    }
 }
