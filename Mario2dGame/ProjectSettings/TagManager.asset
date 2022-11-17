@@ -9,6 +9,8 @@ TagManager:
   - grabableobject
   - enemy
   - enemyjumpkill
+  - collectible
+  - donewithyou
   layers:
   - Default
   - TransparentFX
