@@ -114,6 +114,11 @@ public class PlayerMovements : MonoBehaviour
                 SceneManager.LoadScene(1);
             }
         }
+
+        if(collision.collider.tag == "donewithyou")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
