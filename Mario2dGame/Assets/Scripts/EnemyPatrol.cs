@@ -36,19 +36,10 @@ public class EnemyPatrol : MonoBehaviour
         // Get the distance between the player and the enemy
         distToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if(distToPlayer <= range)
+        if (distToPlayer <= range)
         {
-            if((player.position.x > transform.position.x && transform.localScale.x < 0) 
-                || (player.position.x < transform.position.x && transform.localScale.x > 0))
-            {
-                Flip();
-            }
-
-            // if(canShoot)
-                // StartCoroutine(AttackPlayer());
-            isPatrol = false;
-
-        } else
+        }
+        else
         {
             isPatrol = true;
         }
@@ -70,7 +61,7 @@ public class EnemyPatrol : MonoBehaviour
         {
             Flip();
         }
-        enemyBody.velocity = new Vector2(walkSpeed * Time.fixedDeltaTime, enemyBody.velocity.y);
+        enemyBody.velocity = new Vector2(walkSpeed, enemyBody.velocity.y);
     }
 
     private void Flip()

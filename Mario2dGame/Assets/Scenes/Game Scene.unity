@@ -4434,6 +4434,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &191369031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 191369032}
+  m_Layer: 0
+  m_Name: Gun
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &191369032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191369031}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.407, y: 0.839, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1703773073}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &200611893
 GameObject:
   m_ObjectHideFlags: 0
@@ -16430,7 +16461,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322814655}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03299904, y: -0.54299927, z: 0}
+  m_LocalPosition: {x: 0.59, y: -0.54299927, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17069,7 +17100,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496610451}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03299904, y: -0.54299927, z: 0}
+  m_LocalPosition: {x: 0.67, y: -0.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20773,9 +20804,9 @@ GameObject:
   - component: {fileID: 1106704916}
   - component: {fileID: 1106704915}
   - component: {fileID: 1106704914}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24386,9 +24417,9 @@ GameObject:
   - component: {fileID: 1120356280}
   - component: {fileID: 1120356279}
   - component: {fileID: 1120356278}
-  - component: {fileID: 1120356277}
   - component: {fileID: 1120356276}
   - component: {fileID: 1120356275}
+  - component: {fileID: 1120356281}
   m_Layer: 0
   m_Name: Jump on top of the enemy (3)
   m_TagString: enemyjumpkill
@@ -24468,30 +24499,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.126759, y: 0.9669707}
   m_EdgeRadius: 0
---- !u!114 &1120356277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1120356273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8cbaf1190972fb41b8e1c96ad0fef06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 170
-  range: 6
-  isPatrol: 0
-  ground:
-    serializedVersion: 2
-    m_Bits: 128
-  wall:
-    serializedVersion: 2
-    m_Bits: 256
-  groundCheck: {fileID: 1311173846}
-  bodyCollider: {fileID: 1120356276}
-  player: {fileID: 1703773073}
 --- !u!114 &1120356278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24577,6 +24584,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1120356281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120356273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284adfddc93d32048b9c49884b4093aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  groundDetection: {fileID: 1311173846}
 --- !u!1 &1122942638
 GameObject:
   m_ObjectHideFlags: 0
@@ -24589,16 +24610,16 @@ GameObject:
   - component: {fileID: 1122942645}
   - component: {fileID: 1122942644}
   - component: {fileID: 1122942643}
-  - component: {fileID: 1122942642}
   - component: {fileID: 1122942641}
   - component: {fileID: 1122942640}
+  - component: {fileID: 1122942646}
   m_Layer: 0
   m_Name: Jump on top of the enemy (1)
   m_TagString: enemyjumpkill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1122942639
 Transform:
   m_ObjectHideFlags: 0
@@ -24671,30 +24692,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.126759, y: 0.9669707}
   m_EdgeRadius: 0
---- !u!114 &1122942642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1122942638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8cbaf1190972fb41b8e1c96ad0fef06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 170
-  range: 6
-  isPatrol: 0
-  ground:
-    serializedVersion: 2
-    m_Bits: 128
-  wall:
-    serializedVersion: 2
-    m_Bits: 256
-  groundCheck: {fileID: 1619996523}
-  bodyCollider: {fileID: 1122942641}
-  player: {fileID: 1703773073}
 --- !u!114 &1122942643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24780,6 +24777,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1122942646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122942638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284adfddc93d32048b9c49884b4093aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  groundDetection: {fileID: 1619996523}
 --- !u!1 &1135277695
 GameObject:
   m_ObjectHideFlags: 0
@@ -25808,9 +25819,9 @@ GameObject:
   - component: {fileID: 1234119083}
   - component: {fileID: 1234119082}
   - component: {fileID: 1234119081}
-  - component: {fileID: 1234119080}
   - component: {fileID: 1234119079}
   - component: {fileID: 1234119078}
+  - component: {fileID: 1234119084}
   m_Layer: 0
   m_Name: Jump on top of the enemy (2)
   m_TagString: enemyjumpkill
@@ -25890,30 +25901,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.126759, y: 0.9669707}
   m_EdgeRadius: 0
---- !u!114 &1234119080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234119076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8cbaf1190972fb41b8e1c96ad0fef06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 170
-  range: 6
-  isPatrol: 0
-  ground:
-    serializedVersion: 2
-    m_Bits: 128
-  wall:
-    serializedVersion: 2
-    m_Bits: 256
-  groundCheck: {fileID: 726131691}
-  bodyCollider: {fileID: 1234119079}
-  player: {fileID: 1703773073}
 --- !u!114 &1234119081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25999,6 +25986,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1234119084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234119076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284adfddc93d32048b9c49884b4093aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  groundDetection: {fileID: 726131691}
 --- !u!1 &1234688142
 GameObject:
   m_ObjectHideFlags: 0
@@ -26827,9 +26828,9 @@ GameObject:
   - component: {fileID: 1292373973}
   - component: {fileID: 1292373972}
   - component: {fileID: 1292373971}
-  - component: {fileID: 1292373970}
   - component: {fileID: 1292373969}
   - component: {fileID: 1292373968}
+  - component: {fileID: 1292373974}
   m_Layer: 0
   m_Name: Jump and kill type enemy (1)
   m_TagString: enemyjumpkill
@@ -26909,30 +26910,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.126759, y: 0.9669707}
   m_EdgeRadius: 0
---- !u!114 &1292373970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1292373966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8cbaf1190972fb41b8e1c96ad0fef06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 170
-  range: 6
-  isPatrol: 0
-  ground:
-    serializedVersion: 2
-    m_Bits: 128
-  wall:
-    serializedVersion: 2
-    m_Bits: 256
-  groundCheck: {fileID: 1896304032}
-  bodyCollider: {fileID: 1292373969}
-  player: {fileID: 1703773073}
 --- !u!114 &1292373971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27018,6 +26995,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1292373974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292373966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284adfddc93d32048b9c49884b4093aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  groundDetection: {fileID: 1896304032}
 --- !u!1 &1303215777
 GameObject:
   m_ObjectHideFlags: 0
@@ -27194,7 +27185,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311173845}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.92, y: -0.92, z: 0}
+  m_LocalPosition: {x: 0.92, y: -0.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27317,7 +27308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323443036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.04, y: -21, z: 0}
+  m_LocalPosition: {x: 15.31, y: -21.01, z: 0}
   m_LocalScale: {x: 15.839974, y: 15.839974, z: 15.839974}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27587,8 +27578,8 @@ GameObject:
   - component: {fileID: 1339933555}
   - component: {fileID: 1339933554}
   - component: {fileID: 1339933553}
-  - component: {fileID: 1339933552}
   - component: {fileID: 1339933551}
+  - component: {fileID: 1339933556}
   m_Layer: 0
   m_Name: NonJumpEnemy (2)
   m_TagString: enemy
@@ -27640,30 +27631,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1339933552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1339933549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8cbaf1190972fb41b8e1c96ad0fef06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 170
-  range: 6
-  isPatrol: 0
-  ground:
-    serializedVersion: 2
-    m_Bits: 128
-  wall:
-    serializedVersion: 2
-    m_Bits: 256
-  groundCheck: {fileID: 1915225076}
-  bodyCollider: {fileID: 1339933551}
-  player: {fileID: 1703773073}
 --- !u!114 &1339933553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27749,6 +27716,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1339933556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339933549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284adfddc93d32048b9c49884b4093aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  groundDetection: {fileID: 1915225076}
 --- !u!1 &1340580792
 GameObject:
   m_ObjectHideFlags: 0
@@ -28499,9 +28480,9 @@ GameObject:
   - component: {fileID: 1417530691}
   - component: {fileID: 1417530690}
   - component: {fileID: 1417530689}
-  - component: {fileID: 1417530688}
   - component: {fileID: 1417530687}
   - component: {fileID: 1417530686}
+  - component: {fileID: 1417530692}
   m_Layer: 0
   m_Name: Jump on top of the enemy (4)
   m_TagString: enemyjumpkill
@@ -28581,30 +28562,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.126759, y: 0.9669707}
   m_EdgeRadius: 0
---- !u!114 &1417530688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1417530684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8cbaf1190972fb41b8e1c96ad0fef06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 170
-  range: 6
-  isPatrol: 0
-  ground:
-    serializedVersion: 2
-    m_Bits: 128
-  wall:
-    serializedVersion: 2
-    m_Bits: 256
-  groundCheck: {fileID: 1954817177}
-  bodyCollider: {fileID: 1417530687}
-  player: {fileID: 1703773073}
 --- !u!114 &1417530689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28690,6 +28647,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1417530692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417530684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284adfddc93d32048b9c49884b4093aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  groundDetection: {fileID: 1954817177}
 --- !u!1 &1430621336
 GameObject:
   m_ObjectHideFlags: 0
@@ -32324,6 +32295,8 @@ Transform:
   - {fileID: 1462633646}
   - {fileID: 1806235361}
   - {fileID: 1995360752}
+  - {fileID: 1764234418}
+  - {fileID: 191369032}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -32399,6 +32372,8 @@ MonoBehaviour:
   playerJumpEFX: {fileID: 879554298}
   countText: {fileID: 379120366}
   lifeCountText: {fileID: 1089820642}
+  shootingPoint: {fileID: 1764234418}
+  bullet: {fileID: 1817123574264500026, guid: defc5d9cd077aa347ae26ac5cb057fa0, type: 3}
   delayBeforeDoubleJump: 0
   speed: 5
   jumpSpeed: 12
@@ -32432,8 +32407,8 @@ GameObject:
   - component: {fileID: 1737660998}
   - component: {fileID: 1737660997}
   - component: {fileID: 1737660996}
-  - component: {fileID: 1737660995}
   - component: {fileID: 1737660994}
+  - component: {fileID: 1737660999}
   m_Layer: 0
   m_Name: NonJumpEnemy
   m_TagString: enemy
@@ -32485,30 +32460,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1737660995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1737660992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8cbaf1190972fb41b8e1c96ad0fef06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 170
-  range: 6
-  isPatrol: 0
-  ground:
-    serializedVersion: 2
-    m_Bits: 128
-  wall:
-    serializedVersion: 2
-    m_Bits: 256
-  groundCheck: {fileID: 496610452}
-  bodyCollider: {fileID: 1737660994}
-  player: {fileID: 1703773073}
 --- !u!114 &1737660996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32594,6 +32545,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1737660999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737660992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284adfddc93d32048b9c49884b4093aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  groundDetection: {fileID: 496610452}
 --- !u!1 &1744542331
 GameObject:
   m_ObjectHideFlags: 0
@@ -33782,6 +33747,37 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &1764234417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1764234418}
+  m_Layer: 0
+  m_Name: ShootingPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1764234418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764234417}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.732, y: 0.837, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1703773073}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1793328437
 GameObject:
   m_ObjectHideFlags: 0
@@ -35357,8 +35353,8 @@ GameObject:
   - component: {fileID: 1887619533}
   - component: {fileID: 1887619532}
   - component: {fileID: 1887619531}
-  - component: {fileID: 1887619530}
   - component: {fileID: 1887619529}
+  - component: {fileID: 1887619534}
   m_Layer: 0
   m_Name: NonJumpEnemy (1)
   m_TagString: enemy
@@ -35410,30 +35406,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1887619530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1887619527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8cbaf1190972fb41b8e1c96ad0fef06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 170
-  range: 6
-  isPatrol: 0
-  ground:
-    serializedVersion: 2
-    m_Bits: 128
-  wall:
-    serializedVersion: 2
-    m_Bits: 256
-  groundCheck: {fileID: 322814656}
-  bodyCollider: {fileID: 1887619529}
-  player: {fileID: 1703773073}
 --- !u!114 &1887619531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35519,6 +35491,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1887619534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887619527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284adfddc93d32048b9c49884b4093aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  groundDetection: {fileID: 322814656}
 --- !u!1 &1891483486
 GameObject:
   m_ObjectHideFlags: 0
@@ -35714,7 +35700,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1896304031}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.92, y: -0.92, z: 0}
+  m_LocalPosition: {x: 0.92, y: -0.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -35847,7 +35833,7 @@ GameObject:
   m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -35859,7 +35845,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1915225075}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03299904, y: -0.54299927, z: 0}
+  m_LocalPosition: {x: 0.558, y: -0.315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -36977,7 +36963,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079240511}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

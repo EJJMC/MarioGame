@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -12,6 +13,8 @@ public class PlayerMovements : MonoBehaviour
     public AudioSource playerJumpEFX;
     public Text countText;
     public Text lifeCountText;
+    public Transform shootingPoint;
+    public GameObject bullet;
 
     // create general dynamic variables here..
     float xDirection;
@@ -62,6 +65,7 @@ public class PlayerMovements : MonoBehaviour
         bool keyW = Input.GetKeyDown(KeyCode.W);
         bool keyA = Input.GetKeyDown(KeyCode.A);
         bool keyD = Input.GetKeyDown(KeyCode.D);
+        bool keySpace = Input.GetKeyDown(KeyCode.Space);
 
         xDirection = Input.GetAxisRaw("Horizontal");
 
@@ -80,6 +84,11 @@ public class PlayerMovements : MonoBehaviour
         {
             keyBoardClicked();
             doJump();
+        }
+
+        if(keySpace)
+        {
+            Instantiate(bullet, shootingPoint.position, transform.rotation);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)

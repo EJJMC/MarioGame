@@ -11,6 +11,7 @@ TagManager:
   - enemyjumpkill
   - collectible
   - donewithyou
+  - walls
   layers:
   - Default
   - TransparentFX
