@@ -28,12 +28,12 @@ public class MusicPlayer : MonoBehaviour
         bool bgmOnPresPrefs = (PlayerPrefs.GetInt("bgmon") != 0);
         bool efxOnPresPrefs = (PlayerPrefs.GetInt("efxon") != 0);
 
-        Debug.Log("************************");
+        /*Debug.Log("************************");
         Debug.Log(bgmVolPresPrefs);
         Debug.Log(efxVolPresPrefs);
         Debug.Log(bgmOnPresPrefs);
         Debug.Log(efxOnPresPrefs);
-        Debug.Log("************************");
+        Debug.Log("************************");*/
 
         if (bgmVolPresPrefs >= 0f && bgmVolPresPrefs <= 1f)
         {

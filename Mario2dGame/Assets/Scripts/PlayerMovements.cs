@@ -10,108 +10,100 @@ public class PlayerMovements : MonoBehaviour
     // Create Class and interface variables here..
     Rigidbody2D playerBody;
     public AudioSource playerJumpEFX;
+    public Text countText;
+    public Text lifeCountText;
 
     // create general dynamic variables here..
     float xDirection;
-    bool isNotGrounded = false;
-    string movement;
+    private bool moveLeft;
+    private bool moveRight;
+    private float horizontalMove;
+    bool isGrounded;
+    bool canDoubleJump;
+    public float delayBeforeDoubleJump;
+    private int count = 0;
+    private bool keyboardClick = true;
+    private bool mobileControllerClick = false;
 
     // create constant variables here..
-    [SerializeField] float playerSpeed = 5f;
-    [SerializeField] float jumpHeight = 14f;
     int playerMaxHealth = 2;
-
-    private int count = 0;
-    public Text countText;
+    public float speed = 15f;
+    public float jumpSpeed = 10f;
 
 
     void Start()
     {
         playerBody = GetComponent<Rigidbody2D>();
+
+        moveLeft = false;
+        moveRight = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        MovementPlayer();
         playerMovementHandler();
-        mobileController(movement);
+    }
+    private void FixedUpdate()
+    {
+        if( mobileControllerClick )
+        {
+            playerBody.velocity = new Vector2(horizontalMove, playerBody.velocity.y);
+        } else if ( keyboardClick )
+        {
+            playerBody.velocity = new Vector2(xDirection * speed, playerBody.velocity.y);
+        }
     }
 
     // Private methods
     private void playerMovementHandler()
     {
-        bool keyS = Input.GetKeyDown(KeyCode.S);
         bool keyW = Input.GetKeyDown(KeyCode.W);
+        bool keyA = Input.GetKeyDown(KeyCode.A);
+        bool keyD = Input.GetKeyDown(KeyCode.D);
 
         xDirection = Input.GetAxisRaw("Horizontal");
-        playerBody.velocity = new Vector2(xDirection * playerSpeed, playerBody.velocity.y);
 
         // Flip the direction of the player when moving towards the left and right.
-        if(xDirection < 0)
+        if (keyA)
         {
-            moveLeftAction();
-        } 
-        else if (xDirection > 0)
+            keyBoardClicked();
+            transform.localScale = new Vector2(-1, 1);
+        } else if (keyD)
         {
-            moveRightAction();
+            keyBoardClicked();
+            transform.localScale = new Vector2(1, 1);
         }
-
         // If "W" is clicked, perform jump or upward movement
-        if (keyW && !isNotGrounded)
+        if (keyW)
         {
-            jumpAction();
+            keyBoardClicked();
+            doJump();
         }
-
-        // If "S" is clicked, perform duck or downward movement
-        if (keyS)
-        {
-            duckAction();
-        }
-    }
-    private void mobileController(string movement)
-    {
-        if(movement == "right")
-        {
-            playerBody.velocity = new Vector2(playerSpeed, playerBody.velocity.y);
-            moveRightAction();
-        } else if (movement == "left")
-        {
-            playerBody.velocity = new Vector2(-playerSpeed, playerBody.velocity.y);
-            moveLeftAction();
-        } else if (movement == "up" && !isNotGrounded)
-        {
-            jumpAction();
-        } else if (movement == "down")
-        {
-            duckAction();
-        } else if (movement == "stop")
-        {
-            // playerBody.velocity = Vector2.zero;
-        }
-
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Once the player is on the ground level, the player should be able to jump.
         if (collision.gameObject.CompareTag("ground"))
         {
-            isNotGrounded = false;
+            isGrounded = true;
+            canDoubleJump = false;
         }
 
         if (collision.collider.tag == "enemyjumpkill") {
-            Debug.Log("enemy died!");
-            Destroy(collision.collider.transform.parent.gameObject);
+            Destroy(collision.collider.gameObject);
         }
-        else if (collision.collider.tag == "enemy")
+        
+        if (collision.collider.tag == "enemy")
         {
-            Debug.Log("Collision");
             if (playerMaxHealth == 2)
             {
                 playerMaxHealth -= 1;
+                lifeCountText.text = playerMaxHealth.ToString();
             }
             else if (playerMaxHealth == 1)
             {
-                // Destroy(gameObject);
                 int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
                 PlayerPrefs.SetInt("restartlevelat", currentSceneIndex);
                 SceneManager.LoadScene(1);
@@ -129,70 +121,108 @@ public class PlayerMovements : MonoBehaviour
             }
         }
     }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        // Once the player is above the ground level, the player should not be able to jump again.
-        if (collision.gameObject.CompareTag("ground"))
-        {
-            isNotGrounded = true;
-        }
-    }
-    private void jumpAction()
-    {
-        bool efxOnPresPrefs = (PlayerPrefs.GetInt("efxon") != 0);
-        float efxVolPresPrefs = PlayerPrefs.GetFloat("gameefx");
-        if (efxOnPresPrefs)
-        {
-            Debug.Log(playerJumpEFX);
-            Debug.Log(efxVolPresPrefs);
-            playerJumpEFX.volume = efxVolPresPrefs;
-            playerJumpEFX.Play();
-        }
-        playerBody.velocity = new Vector2(playerBody.velocity.x, jumpHeight);
-    }
-    private void duckAction()
-    {
-        Debug.Log("Duck");
-    }
-    private void moveLeftAction()
-    {
-        transform.localScale = new Vector2(-1, 1);
-    }
-    private void moveRightAction()
-    {
-        transform.localScale = new Vector2(1, 1);
-    }
-
-    // Public methods
-    public void mobControllerUp()
-    {
-        movement = "up";
-    }
-    public void mobControllerDown()
-    {
-        movement = "down";
-    }
-    public void mobControllerLeft()
-    {
-        movement = "left";
-    }
-    public void mobControllerRight()
-    {
-        movement = "right";
-    }
-    public void releaseController()
-    {
-        movement = "stop";
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("collectible"))
         {
             count++;
-            Debug.Log(count);
             countText.text = count.ToString();
             Destroy(collision.gameObject);
         }
     }
+    private void MovementPlayer()
+    {
+        //If I press the left button
+        if (moveLeft)
+        {
+            horizontalMove = -speed;
+        }
+
+        //if i press the right button
+        else if (moveRight)
+        {
+            horizontalMove = speed;
+        }
+
+        //if I am not pressing any button
+        else
+        {
+            horizontalMove = 0;
+        }
+    }
+    private void keyBoardClicked ()
+    {
+        keyboardClick = true;
+        mobileControllerClick = false;
+    }
+    private void mobileControllerClicked()
+    {
+        keyboardClick = false;
+        mobileControllerClick = true;
+    }
+
+    // Public methods
+    
+    // Function that handles a bool for double jump
+    void EnableDoubleJump()
+    {
+        canDoubleJump = true;
+    }
+
+    // Left button press
+    public void PointerDownLeft()
+    {
+        mobileControllerClicked();
+        transform.localScale = new Vector2(-1, 1);
+        moveLeft = true;
+    }
+
+    // Release left button press
+    public void PointerUpLeft()
+    {
+        moveLeft = false;
+    }
+
+    // Right button press
+    public void PointerDownRight()
+    {
+        mobileControllerClicked();
+        transform.localScale = new Vector2(1, 1);
+        moveRight = true;
+    }
+
+    // Release right button press
+    public void PointerUpRight()
+    {
+        moveRight = false;
+    }
+
+    // Jump handler
+    public void doJump()
+    {
+        /*
+            bool efxOnPresPrefs = (PlayerPrefs.GetInt("efxon") != 0);
+            float efxVolPresPrefs = PlayerPrefs.GetFloat("gameefx");
+            if (efxOnPresPrefs)
+            {
+                Debug.Log(playerJumpEFX);
+                Debug.Log(efxVolPresPrefs);
+                playerJumpEFX.volume = efxVolPresPrefs;
+                playerJumpEFX.Play();
+            }
+         */
+        if (isGrounded)
+        {
+            isGrounded = false;
+            playerBody.velocity = Vector2.up * jumpSpeed;
+            Invoke("EnableDoubleJump", delayBeforeDoubleJump);
+        }
+
+        if (canDoubleJump)
+        {
+            playerBody.velocity = Vector2.up * jumpSpeed;
+            canDoubleJump = false;
+        }
+    }
+
 }
