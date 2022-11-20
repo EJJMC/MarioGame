@@ -24,7 +24,8 @@ public class GrabObjects : MonoBehaviour
 
         RaycastHit2D grabCheck = Physics2D.Raycast(grabDetect.position, Vector2.right * transform.localScale.x, rayDistance);
 
-        if(grabCheck.collider != null && grabCheck.collider.tag == "grabableobject")
+        if(grabCheck.collider != null && 
+            (grabCheck.collider.tag == "grabableobject" || grabCheck.collider.tag == "gun"))
         {
             // If the object is not picked
             if((Input.GetKeyDown(KeyCode.F) || status == "picked") && !isPicked)

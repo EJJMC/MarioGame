@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class playerbullets : MonoBehaviour
 {
-    public float speed;
-    public Rigidbody2D bullet;
-
+    public GameObject PEObject;
+    public float destroyTime;
     private void Start()
     {
-        bullet.velocity = transform.right * speed;
+        StartCoroutine(BulletsNull());
     }
 
 
@@ -18,12 +17,22 @@ public class playerbullets : MonoBehaviour
         if (collision.gameObject.CompareTag("enemy") || collision.gameObject.CompareTag("enemyjumpkill"))
         {
             Destroy(collision.gameObject);
-            Destroy(gameObject);
+            DestroyBullet();
         }
+        Destroy(gameObject);
+    }
 
-        if (collision.gameObject.CompareTag("ground") || collision.gameObject.CompareTag("walls"))
+    IEnumerator BulletsNull()
+    {
+        yield return new WaitForSeconds(destroyTime);
+        Destroy(PEObject);
+    }
+
+    void DestroyBullet()
+    {
+        if(PEObject != null)
         {
-            Destroy(gameObject);
+            Instantiate(PEObject, transform.position, Quaternion.identity);
         }
     }
 }

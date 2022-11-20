@@ -6,14 +6,57 @@ using UnityEngine.InputSystem;
 
 public class Shoot : MonoBehaviour
 {
+    public float shootSpeed, shootTimer;
+    private bool isShooting;
     public Transform shootingPoint;
     public GameObject bullet;
+    public Transform isHoldingGun;
 
-    private void Update()
+    void Start()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        isShooting = false;
+    }
+    void Update()
+    {
+        if(Input.GetButtonDown("Fire1"))
         {
-            Instantiate(bullet, shootingPoint.position, transform.rotation);
+            shootEnemy();
         }
+        
+    }
+
+    public void shootEnemy()
+    {
+        if (!isShooting)
+        {
+            if (isHoldingGun.transform.childCount > 0 && isHoldingGun.transform.GetChild(0).CompareTag("gun"))
+            {
+                // Shoot function
+                StartCoroutine(FuncShoot());
+            }
+        }
+    }
+
+    IEnumerator FuncShoot()
+    {
+        int direction()
+        {
+            if (transform.localScale.x < 0f)
+            {
+                return -1;
+            }
+            else
+            {
+                return +1;
+            }
+        }
+
+        isShooting=true;
+        // Debug.Log("Shoot");
+        GameObject goBullet = Instantiate(bullet, shootingPoint.position, Quaternion.identity);
+        goBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(shootSpeed * direction() * Time.fixedDeltaTime, 0f);
+        goBullet.transform.localScale = new Vector2(goBullet.transform.localScale.x * direction(), goBullet.transform.localScale.y);
+        yield return new WaitForSeconds(shootTimer);
+        isShooting = false;
     }
 }

@@ -12,6 +12,9 @@ TagManager:
   - collectible
   - donewithyou
   - walls
+  - boxholder
+  - gun
+  - enemykill
   layers:
   - Default
   - TransparentFX

@@ -13,8 +13,6 @@ public class PlayerMovements : MonoBehaviour
     public AudioSource playerJumpEFX;
     public Text countText;
     public Text lifeCountText;
-    public Transform shootingPoint;
-    public GameObject bullet;
 
     // create general dynamic variables here..
     float xDirection;
@@ -86,10 +84,6 @@ public class PlayerMovements : MonoBehaviour
             doJump();
         }
 
-        if(keySpace)
-        {
-            Instantiate(bullet, shootingPoint.position, transform.rotation);
-        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -100,8 +94,9 @@ public class PlayerMovements : MonoBehaviour
             canDoubleJump = false;
         }
 
-        if (collision.collider.tag == "enemyjumpkill") {
-            Destroy(collision.collider.gameObject);
+        if (collision.collider.tag == "enemyjumpkill")
+        {
+            Destroy(collision.collider.gameObject.transform.parent.gameObject);
         }
         
         if (collision.collider.tag == "enemy")

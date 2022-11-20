@@ -22,7 +22,7 @@ public class GrabableObjectHandler : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // If the object hits the ground, it has to disappear below the ground level
-        if(collision.collider.tag == "ground")
+        if(collision.collider.tag == "ground" && collision.transform.CompareTag("grabableobject"))
         {
             boxCollider.isTrigger = true;
         }
