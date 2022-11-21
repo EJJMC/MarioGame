@@ -26,6 +26,8 @@ public class PlayerMovements : MonoBehaviour
     private bool keyboardClick = true;
     private bool mobileControllerClick = false;
 
+    private Animator Myanimator;
+
     // create constant variables here..
     int playerMaxHealth = 2;
     public float speed = 15f;
@@ -38,6 +40,8 @@ public class PlayerMovements : MonoBehaviour
 
         moveLeft = false;
         moveRight = false;
+
+        Myanimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -51,9 +55,12 @@ public class PlayerMovements : MonoBehaviour
         if( mobileControllerClick )
         {
             playerBody.velocity = new Vector2(horizontalMove, playerBody.velocity.y);
+            Myanimator.SetFloat("speed", Mathf.Abs(horizontalMove));
+
         } else if ( keyboardClick )
         {
             playerBody.velocity = new Vector2(xDirection * speed, playerBody.velocity.y);
+            Myanimator.SetFloat("speed", Mathf.Abs(horizontalMove));
         }
     }
 
@@ -72,6 +79,7 @@ public class PlayerMovements : MonoBehaviour
         {
             keyBoardClicked();
             transform.localScale = new Vector2(-1, 1);
+
         } else if (keyD)
         {
             keyBoardClicked();
@@ -140,12 +148,15 @@ public class PlayerMovements : MonoBehaviour
         if (moveLeft)
         {
             horizontalMove = -speed;
+            
+
         }
 
         //if i press the right button
         else if (moveRight)
         {
             horizontalMove = speed;
+            
         }
 
         //if I am not pressing any button
