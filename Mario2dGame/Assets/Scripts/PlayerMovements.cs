@@ -62,6 +62,7 @@ public class PlayerMovements : MonoBehaviour
         {
             playerBody.velocity = new Vector2(xDirection * speed, playerBody.velocity.y);
             Myanimator.SetFloat("speed", Mathf.Abs(horizontalMove));
+
         }
     }
 
@@ -80,11 +81,13 @@ public class PlayerMovements : MonoBehaviour
         {
             keyBoardClicked();
             transform.localScale = new Vector2(-1, 1);
+            
 
         } else if (keyD)
         {
             keyBoardClicked();
             transform.localScale = new Vector2(1, 1);
+            
         }
         // If "W" is clicked, perform jump or upward movement
         if (keyW)
@@ -123,8 +126,8 @@ public class PlayerMovements : MonoBehaviour
             }
             else if (playerMaxHealth == 1)
             {
-                // int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-                // PlayerPrefs.SetInt("restartlevelat", currentSceneIndex);
+               // int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+               //  PlayerPrefs.SetInt("restartlevelat", currentSceneIndex);
                 // SceneManager.LoadScene(1);
                 Myanimator.SetBool("Death", true);
             }
@@ -157,7 +160,6 @@ public class PlayerMovements : MonoBehaviour
         {
             horizontalMove = -speed;
             
-
         }
 
         //if i press the right button
