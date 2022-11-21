@@ -123,9 +123,10 @@ public class PlayerMovements : MonoBehaviour
             }
             else if (playerMaxHealth == 1)
             {
-                int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-                PlayerPrefs.SetInt("restartlevelat", currentSceneIndex);
-                SceneManager.LoadScene(1);
+                // int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+                // PlayerPrefs.SetInt("restartlevelat", currentSceneIndex);
+                // SceneManager.LoadScene(1);
+                Myanimator.SetBool("Death", true);
             }
         }
 
@@ -238,12 +239,14 @@ public class PlayerMovements : MonoBehaviour
             isGrounded = false;
             playerBody.velocity = Vector2.up * jumpSpeed;
             Invoke("EnableDoubleJump", delayBeforeDoubleJump);
+            
             //   Myanimator.SetBool("IsGrounded", true);
         }
 
         if (canDoubleJump)
         {
             playerBody.velocity = Vector2.up * jumpSpeed;
+            
             canDoubleJump = false;
         }
     }
