@@ -93,6 +93,11 @@ public class PlayerMovements : MonoBehaviour
             doJump();
         }
 
+        if(playerBody.velocity.y<0)
+        {
+            Myanimator.SetBool("Land", true);
+        }
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -100,6 +105,7 @@ public class PlayerMovements : MonoBehaviour
         if (collision.gameObject.CompareTag("ground"))
         {
             isGrounded = true;
+            Myanimator.SetBool("Land", false);
             canDoubleJump = false;
         }
 
