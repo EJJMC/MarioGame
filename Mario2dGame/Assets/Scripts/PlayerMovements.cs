@@ -49,6 +49,7 @@ public class PlayerMovements : MonoBehaviour
     {
         MovementPlayer();
         playerMovementHandler();
+        HandleLayers();
     }
     private void FixedUpdate()
     {
@@ -231,6 +232,7 @@ public class PlayerMovements : MonoBehaviour
             isGrounded = false;
             playerBody.velocity = Vector2.up * jumpSpeed;
             Invoke("EnableDoubleJump", delayBeforeDoubleJump);
+            //   Myanimator.SetBool("IsGrounded", true);
         }
 
         if (canDoubleJump)
@@ -240,4 +242,16 @@ public class PlayerMovements : MonoBehaviour
         }
     }
 
-}
+        private void HandleLayers()
+        {
+        if(!isGrounded)
+        {
+            Myanimator.SetLayerWeight(1, 1);
+        }
+        else {
+            Myanimator.SetLayerWeight(1, 0);
+        }
+        }
+    }
+
+
