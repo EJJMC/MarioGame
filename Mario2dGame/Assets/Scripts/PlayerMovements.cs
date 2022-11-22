@@ -130,6 +130,7 @@ public class PlayerMovements : MonoBehaviour
                //  PlayerPrefs.SetInt("restartlevelat", currentSceneIndex);
                 // SceneManager.LoadScene(1);
                 Myanimator.SetBool("Death", true);
+                
             }
         }
 
