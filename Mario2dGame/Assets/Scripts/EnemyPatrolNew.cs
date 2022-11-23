@@ -14,7 +14,7 @@ public class EnemyPatrolNew : MonoBehaviour
 
         RaycastHit2D gInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 2f);
 
-        if(gInfo.collider == false || gInfo.collider.CompareTag("walls"))
+        if(gInfo.collider == false || gInfo.collider.CompareTag("walls") || gInfo.collider.CompareTag("steppingstone"))
         {
             if(moveRight)
             {
