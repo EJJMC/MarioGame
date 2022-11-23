@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenuHandler : MonoBehaviour
 {
     [SerializeField] GameObject pausePanel;
-    [SerializeField] GameObject PlayerObject;
+    // [SerializeField] GameObject PlayerObject;
 
     // Redirects the player to the home screen
     public void homeMenu()
@@ -19,7 +19,7 @@ public class PauseMenuHandler : MonoBehaviour
     public void pauseGame()
     {
         pausePanel.SetActive(true);
-        PlayerObject.SetActive(true);
+        // PlayerObject.SetActive(true);
         Time.timeScale = 0f;
     }
 
@@ -27,7 +27,7 @@ public class PauseMenuHandler : MonoBehaviour
     public void resumeGame()
     {
         pausePanel.SetActive(false);
-        PlayerObject.SetActive(false);
+        // PlayerObject.SetActive(false);
         Time.timeScale = 1f;
     }
 

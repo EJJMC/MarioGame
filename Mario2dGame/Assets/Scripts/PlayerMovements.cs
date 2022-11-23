@@ -105,7 +105,7 @@ public class PlayerMovements : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Once the player is on the ground level, the player should be able to jump.
-        if (collision.gameObject.CompareTag("ground"))
+        if (collision.gameObject.CompareTag("ground") || collision.gameObject.CompareTag("steppingstone"))
         {
             isGrounded = true;
             Myanimator.SetBool("Land", false);

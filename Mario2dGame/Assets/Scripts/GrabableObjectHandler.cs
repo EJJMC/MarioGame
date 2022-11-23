@@ -22,9 +22,12 @@ public class GrabableObjectHandler : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // If the object hits the ground, it has to disappear below the ground level
-        if(collision.collider.tag == "ground")
+        if(collision.collider.tag == "ground" && gameObject.tag != "steppingstone")
         {
             boxCollider.isTrigger = true;
+        } else if (gameObject.tag == "steppingstone")
+        {
+            gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         }
     }
 }

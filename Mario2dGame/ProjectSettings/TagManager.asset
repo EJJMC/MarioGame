@@ -14,7 +14,7 @@ TagManager:
   - walls
   - boxholder
   - gun
-  - enemykill
+  - steppingstone
   layers:
   - Default
   - TransparentFX
