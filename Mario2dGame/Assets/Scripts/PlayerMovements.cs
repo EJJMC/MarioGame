@@ -61,7 +61,7 @@ public class PlayerMovements : MonoBehaviour
         } else if ( keyboardClick )
         {
             playerBody.velocity = new Vector2(xDirection * speed, playerBody.velocity.y);
-            Myanimator.SetFloat("speed", Mathf.Abs(horizontalMove));
+            Myanimator.SetFloat("speed", Mathf.Abs(xDirection * speed));
 
         }
     }
@@ -126,10 +126,11 @@ public class PlayerMovements : MonoBehaviour
             }
             else if (playerMaxHealth == 1)
             {
-               // int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-               //  PlayerPrefs.SetInt("restartlevelat", currentSceneIndex);
-                // SceneManager.LoadScene(1);
                 Myanimator.SetBool("Death", true);
+                // playerBody.GetComponent<Rigidbody2D>().bodyType;
+                int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+                PlayerPrefs.SetInt("restartlevelat", currentSceneIndex);
+                SceneManager.LoadScene(1);
                 
             }
         }
