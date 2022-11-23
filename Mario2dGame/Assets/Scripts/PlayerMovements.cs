@@ -26,6 +26,8 @@ public class PlayerMovements : MonoBehaviour
     private bool keyboardClick = true;
     private bool mobileControllerClick = false;
 
+    private Animator Myanimator;
+
     // create constant variables here..
     int playerMaxHealth = 2;
     public float speed = 15f;
@@ -38,6 +40,8 @@ public class PlayerMovements : MonoBehaviour
 
         moveLeft = false;
         moveRight = false;
+
+        Myanimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -45,15 +49,20 @@ public class PlayerMovements : MonoBehaviour
     {
         MovementPlayer();
         playerMovementHandler();
+        HandleLayers();
     }
     private void FixedUpdate()
     {
         if( mobileControllerClick )
         {
             playerBody.velocity = new Vector2(horizontalMove, playerBody.velocity.y);
+            Myanimator.SetFloat("speed", Mathf.Abs(horizontalMove));
+
         } else if ( keyboardClick )
         {
             playerBody.velocity = new Vector2(xDirection * speed, playerBody.velocity.y);
+            Myanimator.SetFloat("speed", Mathf.Abs(horizontalMove));
+
         }
     }
 
@@ -72,16 +81,24 @@ public class PlayerMovements : MonoBehaviour
         {
             keyBoardClicked();
             transform.localScale = new Vector2(-1, 1);
+            
+
         } else if (keyD)
         {
             keyBoardClicked();
             transform.localScale = new Vector2(1, 1);
+            
         }
         // If "W" is clicked, perform jump or upward movement
         if (keyW)
         {
             keyBoardClicked();
             doJump();
+        }
+
+        if(playerBody.velocity.y<0)
+        {
+            Myanimator.SetBool("Land", true);
         }
 
     }
@@ -91,6 +108,7 @@ public class PlayerMovements : MonoBehaviour
         if (collision.gameObject.CompareTag("ground"))
         {
             isGrounded = true;
+            Myanimator.SetBool("Land", false);
             canDoubleJump = false;
         }
 
@@ -108,9 +126,11 @@ public class PlayerMovements : MonoBehaviour
             }
             else if (playerMaxHealth == 1)
             {
-                int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-                PlayerPrefs.SetInt("restartlevelat", currentSceneIndex);
-                SceneManager.LoadScene(1);
+               // int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+               //  PlayerPrefs.SetInt("restartlevelat", currentSceneIndex);
+                // SceneManager.LoadScene(1);
+                Myanimator.SetBool("Death", true);
+                
             }
         }
 
@@ -140,12 +160,14 @@ public class PlayerMovements : MonoBehaviour
         if (moveLeft)
         {
             horizontalMove = -speed;
+            
         }
 
         //if i press the right button
         else if (moveRight)
         {
             horizontalMove = speed;
+            
         }
 
         //if I am not pressing any button
@@ -220,13 +242,28 @@ public class PlayerMovements : MonoBehaviour
             isGrounded = false;
             playerBody.velocity = Vector2.up * jumpSpeed;
             Invoke("EnableDoubleJump", delayBeforeDoubleJump);
+            
+            //   Myanimator.SetBool("IsGrounded", true);
         }
 
         if (canDoubleJump)
         {
             playerBody.velocity = Vector2.up * jumpSpeed;
+            
             canDoubleJump = false;
         }
     }
 
-}
+        private void HandleLayers()
+        {
+        if(!isGrounded)
+        {
+            Myanimator.SetLayerWeight(1, 1);
+        }
+        else {
+            Myanimator.SetLayerWeight(1, 0);
+        }
+        }
+    }
+
+
