@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 8022043}
   - component: {fileID: 8022045}
   - component: {fileID: 8022044}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Pause Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8022042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -95}
+  m_LocalPosition: {x: 0, y: 0, z: -74}
   m_LocalScale: {x: 0.9949908, y: 0.9949908, z: 0.9949908}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -159,7 +159,7 @@ RectTransform:
   - {fileID: 1159676478}
   - {fileID: 1320146845}
   m_Father: {fileID: 254022941}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0.85882354}
+  m_Color: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 0.85882354}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11790,7 +11790,7 @@ GameObject:
   - component: {fileID: 50689190}
   - component: {fileID: 50689192}
   - component: {fileID: 50689191}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12017,7 +12017,7 @@ GameObject:
   - component: {fileID: 78458871}
   - component: {fileID: 78458873}
   - component: {fileID: 78458872}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12932,7 +12932,7 @@ GameObject:
   - component: {fileID: 186509820}
   - component: {fileID: 186509819}
   - component: {fileID: 186509822}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Resume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12947,7 +12947,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 186509817}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 3, y: 3, z: 0.8246463}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -12957,7 +12957,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 691, y: -54}
+  m_AnchoredPosition: {x: 929, y: -304}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &186509819
@@ -24810,7 +24810,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &254022941
 RectTransform:
@@ -24824,8 +24824,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8022043}
   - {fileID: 2032436509}
+  - {fileID: 8022043}
   - {fileID: 185024162}
   - {fileID: 1340580793}
   - {fileID: 379120365}
@@ -25319,7 +25319,7 @@ GameObject:
   - component: {fileID: 361154142}
   - component: {fileID: 361154144}
   - component: {fileID: 361154143}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26029,7 +26029,7 @@ GameObject:
   - component: {fileID: 377234022}
   - component: {fileID: 377234024}
   - component: {fileID: 377234023}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26364,7 +26364,7 @@ GameObject:
   - component: {fileID: 452632585}
   - component: {fileID: 452632587}
   - component: {fileID: 452632586}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28725,7 +28725,7 @@ GameObject:
   m_Component:
   - component: {fileID: 636766591}
   - component: {fileID: 636766592}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: EFX controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28829,7 +28829,7 @@ GameObject:
   - component: {fileID: 650534327}
   - component: {fileID: 650534329}
   - component: {fileID: 650534328}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28909,7 +28909,7 @@ GameObject:
   - component: {fileID: 653461007}
   - component: {fileID: 653461009}
   - component: {fileID: 653461008}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30084,7 +30084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 881724361}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30984,7 +30984,7 @@ GameObject:
   - component: {fileID: 1050787478}
   - component: {fileID: 1050787477}
   - component: {fileID: 1050787476}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Restart Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51883,7 +51883,7 @@ GameObject:
   - component: {fileID: 1135277696}
   - component: {fileID: 1135277698}
   - component: {fileID: 1135277697}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51960,7 +51960,7 @@ GameObject:
   - component: {fileID: 1151007512}
   - component: {fileID: 1151007511}
   - component: {fileID: 1151007510}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Sound Off
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52323,7 +52323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1159676478}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: BGM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52616,7 +52616,7 @@ GameObject:
   - component: {fileID: 1231290233}
   - component: {fileID: 1231290235}
   - component: {fileID: 1231290234}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53013,7 +53013,7 @@ GameObject:
   - component: {fileID: 1234688143}
   - component: {fileID: 1234688145}
   - component: {fileID: 1234688144}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53607,7 +53607,7 @@ GameObject:
   - component: {fileID: 1266562113}
   - component: {fileID: 1266562112}
   - component: {fileID: 1266562111}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: EFX Off
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54705,7 +54705,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1320146845}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: EFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55420,7 +55420,7 @@ GameObject:
   - component: {fileID: 1360154482}
   - component: {fileID: 1360154481}
   - component: {fileID: 1360154480}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Sound On
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56303,7 +56303,7 @@ GameObject:
   - component: {fileID: 1393482692}
   - component: {fileID: 1393482691}
   - component: {fileID: 1393482694}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Home Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57701,7 +57701,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1497057250}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89752,7 +89752,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1744542332}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91923,7 +91923,7 @@ GameObject:
   - component: {fileID: 1837656415}
   - component: {fileID: 1837656417}
   - component: {fileID: 1837656416}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92729,7 +92729,7 @@ GameObject:
   - component: {fileID: 1874124815}
   - component: {fileID: 1874124817}
   - component: {fileID: 1874124816}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93073,7 +93073,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1891483487}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93113,7 +93113,7 @@ GameObject:
   - component: {fileID: 1892842754}
   - component: {fileID: 1892842753}
   - component: {fileID: 1892842752}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: EFX On
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93277,7 +93277,7 @@ GameObject:
   - component: {fileID: 1897898208}
   - component: {fileID: 1897898210}
   - component: {fileID: 1897898209}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95317,7 +95317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2017039412}
   - component: {fileID: 2017039413}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Sound controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95448,7 +95448,7 @@ RectTransform:
   - {fileID: 55667214}
   - {fileID: 1966516045}
   m_Father: {fileID: 254022941}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
