@@ -42,6 +42,12 @@ public class PlayerMovements : MonoBehaviour
         moveRight = false;
 
         Myanimator = GetComponent<Animator>();
+
+        // PlayerPrefs.DeleteAll();
+
+        int currentLevel = SceneManager.GetActiveScene().buildIndex;
+        PlayerPrefs.SetInt("lastvisitedlevel", currentLevel);
+        // Debug.Log();
     }
 
     // Update is called once per frame
