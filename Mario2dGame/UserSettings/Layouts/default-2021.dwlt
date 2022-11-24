@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Inspector
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 371}
   m_MaxSize: {x: 10000, y: 10000}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 1095
+  controlID: 106
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 1096
+  controlID: 107
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 1097
+  controlID: 108
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 1098
+  controlID: 109
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -213,8 +213,8 @@ MonoBehaviour:
     y: 0
     width: 236.8
     height: 427.2
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GridPaintPaletteWindow
+  m_Name: InspectorWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -295,14 +295,14 @@ MonoBehaviour:
     y: 0
     width: 363.19995
     height: 722.8
-  m_MinSize: {x: 241, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 21}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
   - {fileID: 21}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -550,9 +550,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 53.776268, y: -24.45703, z: 0.33075282}
+    m_Target: {x: -290.02722, y: -193.12178, z: -1203.4084}
     speed: 2
-    m_Value: {x: 53.776268, y: -24.45703, z: 0.33075282}
+    m_Value: {x: -285.1717, y: -192.86247, z: -1203.3601}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -603,9 +603,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 11.652157
+    m_Target: 112.40213
     speed: 2
-    m_Value: 11.652157
+    m_Value: 107.561844
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -660,24 +660,24 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 398.8}
-      m_SelectedIDs: c4760000
-      m_LastClickedID: 30404
-      m_ExpandedIDs: 0e6cffff08fbfffffc7000000a7100008c71000096710000b0710000ce720000167300005a750000de75000032410100
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 96700100
+      m_LastClickedID: 94358
+      m_ExpandedIDs: a61cffffbe1dffff0438ffffa838ffff4839ffff003affffd83affff823bffff0c63ffff2464ffffa466ffff5067fffff467ffff9668ffff4e69ffff266affff526cffff3c79fffff479ffffca7affff887bffff287cffffca7cffff6e7dffffc27fffffbaa5ffff7aa6ffff04a8ffff10b6ffffb4b6ffffa4b7ffff04bdffff78bfffff52c2ffff66c3ffff1ec4ffffe4c4ffffc4c5ffffd4c6ffff76c7ffff0ec8ffff68d1ffff7ad2ffffb6d3ffff82ddffffdee1ffff30e3ffff6ee7ffff36e8ffff08fbffff8a710000f07300001674000054740000f4760000feb0000008b1000014b100007ab100008cb10000b4b10000e6b10000f8b1000016b200001eb2000024b2000080b300001eb4000070b90000c0c60000cec7000096cd0000e0cd00007ee300007ce4000094e40000c6e40000d8e40000f6e4000024e50000b2e50000fee500001af30000f4f3000010f700003ef900001600010060000100b801010092020100100401008c040100ae05010086060100ce070100f20e0100220f0100fa210100b63a0100c23a0100e24701002a490100a0490100ac490100b8490100cc4901006a5801007458010080580100786c0100526d0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: torch (6)
-        m_OriginalName: torch (6)
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 30174
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 9}
       m_SearchString: 
@@ -901,22 +901,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Assets
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Assets
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\naess\OneDrive\Documents\MarioGame\Mario2dGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 55}
-    m_SelectedIDs: cc7a0000
-    m_LastClickedID: 31436
-    m_ExpandedIDs: 00000000cc780000ce780000d0780000d2780000d4780000d678000000ca9a3bffffff7f
+    m_SelectedIDs: f8780000
+    m_LastClickedID: 30968
+    m_ExpandedIDs: 00000000ee780000f0780000f2780000f4780000f6780000f878000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -944,7 +944,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000cc780000ce780000d0780000d2780000d4780000d678000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000ee780000f0780000f2780000f4780000f6780000f8780000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -972,7 +972,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c623000000000000267a000026770000
+    m_ExpandedInstanceIDs: c6230000267a00002677000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1076,6 +1076,26 @@ MonoBehaviour:
     - UnityEditor.DeviceSimulation.ApplicationSettingsPlugin
     controlPanelFoldoutValues: 0000
     pluginNames:
+    - UnityEditor.DeviceSimulation.ApplicationSettingsPlugin
+    - UnityEngine.InputSystem.Editor.InputSystemPlugin
+    - UnityEditor.DeviceSimulation.ApplicationSettingsPlugin
+    - UnityEngine.InputSystem.Editor.InputSystemPlugin
+    - UnityEditor.DeviceSimulation.ApplicationSettingsPlugin
+    - UnityEngine.InputSystem.Editor.InputSystemPlugin
+    - UnityEditor.DeviceSimulation.ApplicationSettingsPlugin
+    - UnityEngine.InputSystem.Editor.InputSystemPlugin
+    - UnityEditor.DeviceSimulation.ApplicationSettingsPlugin
+    - UnityEngine.InputSystem.Editor.InputSystemPlugin
+    - UnityEditor.DeviceSimulation.ApplicationSettingsPlugin
+    - UnityEngine.InputSystem.Editor.InputSystemPlugin
+    - UnityEditor.DeviceSimulation.ApplicationSettingsPlugin
+    - UnityEngine.InputSystem.Editor.InputSystemPlugin
+    - UnityEditor.DeviceSimulation.ApplicationSettingsPlugin
+    - UnityEngine.InputSystem.Editor.InputSystemPlugin
+    - UnityEditor.DeviceSimulation.ApplicationSettingsPlugin
+    - UnityEngine.InputSystem.Editor.InputSystemPlugin
+    - UnityEditor.DeviceSimulation.ApplicationSettingsPlugin
+    - UnityEngine.InputSystem.Editor.InputSystemPlugin
     - UnityEditor.DeviceSimulation.ApplicationSettingsPlugin
     - UnityEngine.InputSystem.Editor.InputSystemPlugin
     - UnityEditor.DeviceSimulation.ApplicationSettingsPlugin
@@ -1309,6 +1329,26 @@ MonoBehaviour:
     - '{}'
     - '{}'
     - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
+    - '{}'
     scale: 15
     fitToScreenEnabled: 1
     rotationDegree: 90
@@ -1350,7 +1390,7 @@ MonoBehaviour:
     m_CachedPref: 160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 30404
+  m_LastInspectedObjectInstanceID: -1
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
