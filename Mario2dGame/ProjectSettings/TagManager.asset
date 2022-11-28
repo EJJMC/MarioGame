@@ -15,6 +15,7 @@ TagManager:
   - boxholder
   - gun
   - steppingstone
+  - healthpoint
   layers:
   - Default
   - TransparentFX
