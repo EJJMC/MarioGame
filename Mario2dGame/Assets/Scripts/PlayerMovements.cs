@@ -204,6 +204,7 @@ public class PlayerMovements : MonoBehaviour
             if(playerMaxHealth < 2)
             {
                 playerMaxHealth++;
+                lifeCountText.text = playerMaxHealth.ToString();
                 Destroy(collision.gameObject);
             }
         }
