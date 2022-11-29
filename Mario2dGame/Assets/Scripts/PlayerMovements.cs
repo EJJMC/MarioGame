@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,6 +14,11 @@ public class PlayerMovements : MonoBehaviour
     public AudioSource playerJumpEFX;
     public Text countText;
     public Text lifeCountText;
+    [SerializeField] int playerMaxHealth;
+    public float KBCounter;
+    public float KBForce;
+    public float KBTotalTime;
+    public bool KnockBackFromRight;
 
     // create general dynamic variables here..
     float xDirection;
@@ -29,7 +35,6 @@ public class PlayerMovements : MonoBehaviour
     private Animator Myanimator;
 
     // create constant variables here..
-    int playerMaxHealth = 2;
     public float speed = 15f;
     public float jumpSpeed = 10f;
 
@@ -61,12 +66,43 @@ public class PlayerMovements : MonoBehaviour
     {
         if( mobileControllerClick )
         {
-            playerBody.velocity = new Vector2(horizontalMove, playerBody.velocity.y);
+            if(KBCounter <= 0)
+            {
+                playerBody.velocity = new Vector2(horizontalMove, playerBody.velocity.y);
+
+            } else
+            {
+                if(KnockBackFromRight)
+                {
+                    playerBody.velocity = new Vector2(-KBForce, KBForce);
+                } else
+                {
+                    playerBody.velocity = new Vector2(KBForce, KBForce);
+                }
+            }
+
             Myanimator.SetFloat("speed", Mathf.Abs(horizontalMove));
 
         } else if ( keyboardClick )
         {
-            playerBody.velocity = new Vector2(xDirection * speed, playerBody.velocity.y);
+            if (KBCounter <= 0)
+            {
+                playerBody.velocity = new Vector2(xDirection * speed, playerBody.velocity.y);
+            }
+            else
+            {
+                if (KnockBackFromRight)
+                {
+                    playerBody.velocity = new Vector2(-KBForce, KBForce);
+                }
+                else
+                {
+                    playerBody.velocity = new Vector2(KBForce, KBForce);
+                }
+
+                KBCounter -= Time.deltaTime;
+            }
+
             Myanimator.SetFloat("speed", Mathf.Abs(xDirection * speed));
 
         }
@@ -127,6 +163,8 @@ public class PlayerMovements : MonoBehaviour
         {
             if (playerMaxHealth == 2)
             {
+                KBCounter = KBTotalTime;
+                KnockBackFromRight = collision.transform.position.x >= transform.position.x;
                 playerMaxHealth -= 1;
                 lifeCountText.text = playerMaxHealth.ToString();
             }
@@ -159,6 +197,16 @@ public class PlayerMovements : MonoBehaviour
             count++;
             countText.text = count.ToString();
             Destroy(collision.gameObject);
+        }
+
+        if(collision.gameObject.CompareTag("healthpoint"))
+        {
+            if(playerMaxHealth < 2)
+            {
+                playerMaxHealth++;
+                lifeCountText.text = playerMaxHealth.ToString();
+                Destroy(collision.gameObject);
+            }
         }
     }
     private void MovementPlayer()
@@ -261,7 +309,7 @@ public class PlayerMovements : MonoBehaviour
         }
     }
 
-        private void HandleLayers()
+    private void HandleLayers()
         {
         if(!isGrounded)
         {
@@ -271,6 +319,7 @@ public class PlayerMovements : MonoBehaviour
             Myanimator.SetLayerWeight(1, 0);
         }
         }
-    }
+
+}
 
 
