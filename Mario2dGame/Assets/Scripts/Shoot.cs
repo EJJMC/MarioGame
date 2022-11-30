@@ -11,6 +11,8 @@ public class Shoot : MonoBehaviour
     public Transform shootingPoint;
     public GameObject bullet;
     public Transform isHoldingGun;
+    public AudioSource shootEfx;
+    private bool efxOnPresPrefs;
 
     void Start()
     {
@@ -18,7 +20,9 @@ public class Shoot : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
+        efxOnPresPrefs = (PlayerPrefs.GetInt("efxon") != 0);
+
+        if (Input.GetButtonDown("Fire1"))
         {
             shootEnemy();
         }
@@ -56,6 +60,10 @@ public class Shoot : MonoBehaviour
         GameObject goBullet = Instantiate(bullet, shootingPoint.position, Quaternion.identity);
         goBullet.GetComponent<Rigidbody2D>().velocity = new Vector2(shootSpeed * direction() * Time.fixedDeltaTime, 0f);
         goBullet.transform.localScale = new Vector2(goBullet.transform.localScale.x * direction(), goBullet.transform.localScale.y);
+        if(efxOnPresPrefs)
+        {
+            shootEfx.Play();
+        }
         yield return new WaitForSeconds(shootTimer);
         isShooting = false;
     }

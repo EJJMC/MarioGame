@@ -14,7 +14,7 @@ public class MusicPlayer : MonoBehaviour
     public AudioSource BGMAudioSource;
     private float bgmAudioVolume = 1f;
 
-    public AudioSource EFXAudioSource;
+    public AudioSource [] EFXAudioSource;
     private float efxAudioVolume = 1f;
 
     private bool isBGMOn;
@@ -28,14 +28,7 @@ public class MusicPlayer : MonoBehaviour
         bool bgmOnPresPrefs = (PlayerPrefs.GetInt("bgmon") != 0);
         bool efxOnPresPrefs = (PlayerPrefs.GetInt("efxon") != 0);
 
-        /*Debug.Log("************************");
-        Debug.Log(bgmVolPresPrefs);
-        Debug.Log(efxVolPresPrefs);
-        Debug.Log(bgmOnPresPrefs);
-        Debug.Log(efxOnPresPrefs);
-        Debug.Log("************************");*/
-
-        if (bgmVolPresPrefs >= 0f && bgmVolPresPrefs <= 1f)
+        /*if (bgmVolPresPrefs >= 0f && bgmVolPresPrefs <= 1f)
         {
             bgmAudioVolume = bgmVolPresPrefs;
         }
@@ -43,16 +36,24 @@ public class MusicPlayer : MonoBehaviour
         if(efxVolPresPrefs >= 0f && efxVolPresPrefs <= 1f)
         {
             efxAudioVolume = efxVolPresPrefs;
+        }*/
+
+        if(bgmOnPresPrefs == true)
+        {
+            bgmToggleONHandler();
+            //isBGMOn = bgmOnPresPrefs;
+        } else
+        {
+            bgmToggleOFFHandler();
         }
 
-        if(bgmOnPresPrefs)
+        if (efxOnPresPrefs == true)
         {
-            isBGMOn = bgmOnPresPrefs;
-        }
-
-        if (efxOnPresPrefs)
+            efxToggleONHandler();
+            //isEFXOn = efxOnPresPrefs;
+        } else
         {
-            isEFXOn = efxOnPresPrefs;
+            efxToggleOFFHandler();
         }
     }
 
@@ -60,7 +61,7 @@ public class MusicPlayer : MonoBehaviour
     void Update()
     {
         BGMAudioSource.volume = bgmAudioVolume;
-        EFXAudioSource.volume = efxAudioVolume;
+        EFXAudioSource[0].volume = efxAudioVolume;
 
         if (isEFXOn)
         {
@@ -117,14 +118,15 @@ public class MusicPlayer : MonoBehaviour
     // This function is used to handle the efx on/off toggle
     public void efxToggleONHandler()
     {
-        EFXAudioSource.Play();
+        Debug.Log(EFXAudioSource[0]);
+        EFXAudioSource[0].Play();
         isEFXOn = true;
         PlayerPrefs.SetInt("efxon", 1);
     }
 
     public void efxToggleOFFHandler()
     {
-        EFXAudioSource.Stop();
+        EFXAudioSource[0].Stop();
         isEFXOn = false;
         PlayerPrefs.SetInt("efxon", 0);
     }

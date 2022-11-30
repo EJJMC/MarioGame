@@ -11,7 +11,7 @@ public class PlayerMovements : MonoBehaviour
 {
     // Create Class and interface variables here..
     Rigidbody2D playerBody;
-    public AudioSource playerJumpEFX;
+    public AudioSource [] playerEFXs;
     public Text countText;
     public Text lifeCountText;
     [SerializeField] int playerMaxHealth;
@@ -31,7 +31,7 @@ public class PlayerMovements : MonoBehaviour
     private int count = 0;
     private bool keyboardClick = true;
     private bool mobileControllerClick = false;
-
+    private bool efxOnPresPrefs;
     private Animator Myanimator;
 
     // create constant variables here..
@@ -48,16 +48,16 @@ public class PlayerMovements : MonoBehaviour
 
         Myanimator = GetComponent<Animator>();
 
-        // PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
 
         int currentLevel = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("lastvisitedlevel", currentLevel);
-        // Debug.Log();
     }
 
     // Update is called once per frame
     void Update()
     {
+        efxOnPresPrefs = (PlayerPrefs.GetInt("efxon") != 0);
         MovementPlayer();
         playerMovementHandler();
         HandleLayers();
@@ -156,6 +156,10 @@ public class PlayerMovements : MonoBehaviour
 
         if (collision.collider.tag == "enemyjumpkill")
         {
+            if(efxOnPresPrefs)
+            {
+                playerEFXs[4].Play();
+            }
             Destroy(collision.collider.gameObject.transform.parent.gameObject);
         }
         
@@ -165,6 +169,10 @@ public class PlayerMovements : MonoBehaviour
             {
                 KBCounter = KBTotalTime;
                 KnockBackFromRight = collision.transform.position.x >= transform.position.x;
+                if(efxOnPresPrefs)
+                {
+                    playerEFXs[2].Play();
+                }
                 playerMaxHealth -= 1;
                 lifeCountText.text = playerMaxHealth.ToString();
             }
@@ -196,6 +204,10 @@ public class PlayerMovements : MonoBehaviour
         {
             count++;
             countText.text = count.ToString();
+            if (efxOnPresPrefs)
+            {
+                playerEFXs[1].Play();
+            }
             Destroy(collision.gameObject);
         }
 
@@ -205,6 +217,10 @@ public class PlayerMovements : MonoBehaviour
             {
                 playerMaxHealth++;
                 lifeCountText.text = playerMaxHealth.ToString();
+                if (efxOnPresPrefs)
+                {
+                    playerEFXs[1].Play();
+                }
                 Destroy(collision.gameObject);
             }
         }
@@ -286,25 +302,30 @@ public class PlayerMovements : MonoBehaviour
             float efxVolPresPrefs = PlayerPrefs.GetFloat("gameefx");
             if (efxOnPresPrefs)
             {
-                Debug.Log(playerJumpEFX);
-                Debug.Log(efxVolPresPrefs);
                 playerJumpEFX.volume = efxVolPresPrefs;
                 playerJumpEFX.Play();
             }
          */
+        // bool efxOnPresPrefs = (PlayerPrefs.GetInt("efxon") != 0);
         if (isGrounded)
         {
             isGrounded = false;
             playerBody.velocity = Vector2.up * jumpSpeed;
             Invoke("EnableDoubleJump", delayBeforeDoubleJump);
-            
+            if (efxOnPresPrefs)
+            {
+                playerEFXs[0].Play();
+            }
             //   Myanimator.SetBool("IsGrounded", true);
         }
 
         if (canDoubleJump)
         {
             playerBody.velocity = Vector2.up * jumpSpeed;
-            
+            if (efxOnPresPrefs)
+            {
+                playerEFXs[3].Play();
+            }
             canDoubleJump = false;
         }
     }
