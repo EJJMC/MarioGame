@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GrabObjects : MonoBehaviour
@@ -8,8 +9,8 @@ public class GrabObjects : MonoBehaviour
 
     // Create Class and interface variables here..
     [SerializeField] public Transform grabDetect;
-    [SerializeField] public Transform grabDetectGun;
     [SerializeField] public Transform boxHolder;
+    [SerializeField] public Transform gunHolder;
     [SerializeField] public GameObject ShootBtn;
     public GameObject DropButton;
 
@@ -26,13 +27,10 @@ public class GrabObjects : MonoBehaviour
     {
 
         RaycastHit2D grabCheck = Physics2D.Raycast(grabDetect.position, Vector2.right * transform.localScale.x, rayDistance);
-        RaycastHit2D grabCheckGun = Physics2D.Raycast(grabDetectGun.position, Vector2.right * transform.localScale.x, rayDistance);
 
-        if (((grabCheck && grabCheck.collider != null) || (grabCheckGun && grabCheckGun.collider != null)) && 
+        if (((grabCheck && grabCheck.collider != null)) && 
             (grabCheck.collider.tag == "grabableobject" || 
-            ((grabCheck.collider.tag == "gun" 
-                || (grabCheckGun.collider != null && 
-                    grabCheckGun.collider.tag == "gun")) && 
+            ((grabCheck.collider.tag == "gun") && 
                 status == "dropped") 
             || grabCheck.collider.tag == "steppingstone"))
         {
@@ -44,14 +42,7 @@ public class GrabObjects : MonoBehaviour
             // If the object is picked
             else if ((Input.GetKeyDown(KeyCode.F) || status == "dropped") && isPicked)
             {
-                if (grabCheckGun.collider != null && grabCheckGun.collider.tag == "gun")
-                {
-                    ifDroppedWhatToDo(grabCheckGun);
-                }
-                else
-                {
-                    ifDroppedWhatToDo(grabCheck);
-                }
+                ifDroppedWhatToDo(grabCheck);
             }
         }
     }
@@ -71,16 +62,14 @@ public class GrabObjects : MonoBehaviour
         if (collision.gameObject.CompareTag("gun"))
         {
             RaycastHit2D grabCheck = Physics2D.Raycast(grabDetect.position, Vector2.right * transform.localScale.x, rayDistance);
-            pickUpGun(grabCheck, true);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("gun"))
-        {
-            RaycastHit2D grabCheckGun = Physics2D.Raycast(grabDetectGun.position, Vector2.right * transform.localScale.x, rayDistance);
-            pickUpGun(grabCheckGun, false);
+            if (grabCheck.collider != null)
+            {
+                pickUpGun(grabCheck, true);
+            } else if (collision.gameObject.transform)
+            {
+                Debug.Log("Cannot pickup once discarded");
+                //pickUpGun(grabCheck, false);
+            }
         }
     }
 
@@ -92,13 +81,7 @@ public class GrabObjects : MonoBehaviour
         DropButton.SetActive(true);
         grabCheck.collider.gameObject.transform.parent = boxHolder;
         grabCheck.collider.gameObject.transform.position = boxHolder.position;
-        if(trigger)
-        {
-            grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
-        } else
-        {
-            grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-        }
+        grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
         grabCheck.collider.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
         status = "released";
     }
@@ -127,7 +110,7 @@ public class GrabObjects : MonoBehaviour
 
         DropButton.SetActive(false);
         isPicked = false;
-        grabCheck.collider.gameObject.transform.parent = null;
+        grabCheck.collider.gameObject.transform.parent = grabCheck.collider.tag == "gun" ? gunHolder : null;
         grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
         status = "released";
     }
