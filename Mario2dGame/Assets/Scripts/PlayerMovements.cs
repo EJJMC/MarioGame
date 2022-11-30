@@ -32,6 +32,7 @@ public class PlayerMovements : MonoBehaviour
     private bool keyboardClick = true;
     private bool mobileControllerClick = false;
     private bool efxOnPresPrefs;
+    private float efxVolPresPrefs;
     private Animator Myanimator;
 
     // create constant variables here..
@@ -58,6 +59,7 @@ public class PlayerMovements : MonoBehaviour
     void Update()
     {
         efxOnPresPrefs = (PlayerPrefs.GetInt("efxon") != 0);
+        efxVolPresPrefs = PlayerPrefs.GetFloat("gameefx");
         MovementPlayer();
         playerMovementHandler();
         HandleLayers();
@@ -158,6 +160,7 @@ public class PlayerMovements : MonoBehaviour
         {
             if(efxOnPresPrefs)
             {
+                playerEFXs[4].volume = efxVolPresPrefs;
                 playerEFXs[4].Play();
             }
             Destroy(collision.collider.gameObject.transform.parent.gameObject);
@@ -171,6 +174,7 @@ public class PlayerMovements : MonoBehaviour
                 KnockBackFromRight = collision.transform.position.x >= transform.position.x;
                 if(efxOnPresPrefs)
                 {
+                    playerEFXs[2].volume = efxVolPresPrefs;
                     playerEFXs[2].Play();
                 }
                 playerMaxHealth -= 1;
@@ -206,6 +210,7 @@ public class PlayerMovements : MonoBehaviour
             countText.text = count.ToString();
             if (efxOnPresPrefs)
             {
+                playerEFXs[1].volume = efxVolPresPrefs;
                 playerEFXs[1].Play();
             }
             Destroy(collision.gameObject);
@@ -219,6 +224,7 @@ public class PlayerMovements : MonoBehaviour
                 lifeCountText.text = playerMaxHealth.ToString();
                 if (efxOnPresPrefs)
                 {
+                    playerEFXs[1].volume = efxVolPresPrefs;
                     playerEFXs[1].Play();
                 }
                 Destroy(collision.gameObject);
@@ -314,6 +320,7 @@ public class PlayerMovements : MonoBehaviour
             Invoke("EnableDoubleJump", delayBeforeDoubleJump);
             if (efxOnPresPrefs)
             {
+                playerEFXs[0].volume = efxVolPresPrefs;
                 playerEFXs[0].Play();
             }
             //   Myanimator.SetBool("IsGrounded", true);
@@ -324,6 +331,7 @@ public class PlayerMovements : MonoBehaviour
             playerBody.velocity = Vector2.up * jumpSpeed;
             if (efxOnPresPrefs)
             {
+                playerEFXs[3].volume = efxVolPresPrefs;
                 playerEFXs[3].Play();
             }
             canDoubleJump = false;

@@ -28,19 +28,20 @@ public class MusicPlayer : MonoBehaviour
         bool bgmOnPresPrefs = (PlayerPrefs.GetInt("bgmon") != 0);
         bool efxOnPresPrefs = (PlayerPrefs.GetInt("efxon") != 0);
 
-        /*if (bgmVolPresPrefs >= 0f && bgmVolPresPrefs <= 1f)
+        if (bgmVolPresPrefs >= 0f && bgmVolPresPrefs <= 1f)
         {
             bgmAudioVolume = bgmVolPresPrefs;
         }
 
-        if(efxVolPresPrefs >= 0f && efxVolPresPrefs <= 1f)
+        if (efxVolPresPrefs >= 0f && efxVolPresPrefs <= 1f)
         {
             efxAudioVolume = efxVolPresPrefs;
-        }*/
+        }
 
-        if(bgmOnPresPrefs == true)
+        if (bgmOnPresPrefs == true)
         {
             bgmToggleONHandler();
+            bgmAudioVolume = bgmVolPresPrefs;
             //isBGMOn = bgmOnPresPrefs;
         } else
         {
@@ -50,6 +51,7 @@ public class MusicPlayer : MonoBehaviour
         if (efxOnPresPrefs == true)
         {
             efxToggleONHandler();
+            efxAudioVolume = efxVolPresPrefs;
             //isEFXOn = efxOnPresPrefs;
         } else
         {
@@ -118,7 +120,6 @@ public class MusicPlayer : MonoBehaviour
     // This function is used to handle the efx on/off toggle
     public void efxToggleONHandler()
     {
-        Debug.Log(EFXAudioSource[0]);
         EFXAudioSource[0].Play();
         isEFXOn = true;
         PlayerPrefs.SetInt("efxon", 1);

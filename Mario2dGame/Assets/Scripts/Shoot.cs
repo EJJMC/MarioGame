@@ -13,6 +13,7 @@ public class Shoot : MonoBehaviour
     public Transform isHoldingGun;
     public AudioSource shootEfx;
     private bool efxOnPresPrefs;
+    private float efxVolPresPrefs;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class Shoot : MonoBehaviour
     void Update()
     {
         efxOnPresPrefs = (PlayerPrefs.GetInt("efxon") != 0);
+        efxVolPresPrefs = PlayerPrefs.GetFloat("gameefx");
 
         if (Input.GetButtonDown("Fire1"))
         {
@@ -62,6 +64,7 @@ public class Shoot : MonoBehaviour
         goBullet.transform.localScale = new Vector2(goBullet.transform.localScale.x * direction(), goBullet.transform.localScale.y);
         if(efxOnPresPrefs)
         {
+            shootEfx.volume = efxVolPresPrefs;
             shootEfx.Play();
         }
         yield return new WaitForSeconds(shootTimer);
