@@ -482,18 +482,18 @@ MonoBehaviour:
       m_ExpandedIDs: 36c5feff96cbfeffeecffeff8ed0feff3ad1feffdcd1feff78d2feffb2d6fefffad8feffbaf2feff56f3fefff6f3feff9cf4feff0a15ffff1617ffff583dffffd65affff725bffffce80fffffe84ffffce9bffff26f8ffff08fbffffb4700000d0700000e4700000f87000000c710000147100006ea900004eaa0000acad0000aab60000c6b600000cb7000014b70000d2bd0000eebd000034be00003cbe000016d7000032d7000078d7000080d700003ee400005ae40000a0e40000a8e400003cf8000058f8000080f800009ef80000a6f80000aef80000e8fd0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Heart
+        m_OriginalName: Heart
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 30072
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 10}
       m_SearchString: 
@@ -1082,7 +1082,7 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
-      y: 21
+      y: 0
       width: 934.00006
       height: 354
     m_Scale: {x: 0.4097222, y: 0.4097222}
