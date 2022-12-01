@@ -21,7 +21,8 @@ public class SceneHandler : MonoBehaviour
     private int settingsScreen = 2;
     private int levelOne = 3;
     private int levelTwo = 4;
-    private int levelThree = 5;
+    //private int levelThree = 5;
+    private int MapScene1 = 5;
 
     // Jump to start screen
     public void goToStartScreen()
@@ -42,10 +43,10 @@ public class SceneHandler : MonoBehaviour
     }
 
     // Jump to first level
-    public void goToLevelThree()
-    {
-        SceneManager.LoadScene(levelThree);
-    }
+   // public void goToLevelThree()
+   // {
+  //      SceneManager.LoadScene(levelThree);
+   // }
 
     /*
      * Jump to the End Scene
@@ -105,6 +106,11 @@ public class SceneHandler : MonoBehaviour
     public void goToSettings()
     {
         SceneManager.LoadScene(settingsScreen);
+    }
+
+    public void goToLevelSelector()
+    {
+        SceneManager.LoadScene(MapScene1);
     }
 
 }
