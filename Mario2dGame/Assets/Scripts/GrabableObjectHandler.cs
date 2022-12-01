@@ -31,6 +31,7 @@ public class GrabableObjectHandler : MonoBehaviour
         } else if (collision.collider.tag == "ground" && gameObject.tag == "gun")
         {
             gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         }
     }
 }
