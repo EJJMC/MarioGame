@@ -51,8 +51,18 @@ public class PlayerMovements : MonoBehaviour
 
         //PlayerPrefs.DeleteAll();
 
+        int isGameOver = PlayerPrefs.GetInt("gameover");
         int currentLevel = SceneManager.GetActiveScene().buildIndex;
-        PlayerPrefs.SetInt("lastvisitedlevel", currentLevel);
+        int lastVisitedLevel = PlayerPrefs.GetInt("lastvisitedlevel");
+        if ((lastVisitedLevel < currentLevel) || (isGameOver == 1 && currentLevel == 3))
+        {
+            PlayerPrefs.SetInt("lastvisitedlevel", currentLevel);
+        }
+
+        if(isGameOver == 1 && (currentLevel == 3 || currentLevel == 4))
+        {
+            PlayerPrefs.SetInt("gameover", 0);
+        }
     }
 
     // Update is called once per frame
@@ -191,12 +201,25 @@ public class PlayerMovements : MonoBehaviour
             }
         }
 
+        if(collision.collider.tag == "lava")
+        {
+            Myanimator.SetBool("Death", true);
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            PlayerPrefs.SetInt("restartlevelat", currentSceneIndex);
+            SceneManager.LoadScene(1);
+        }
+
         if(collision.collider.tag == "donewithyou")
         {
-            if(count == 3)
+            if (count == 3 && SceneManager.GetActiveScene().buildIndex != 5)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            } else
+            } else if (SceneManager.GetActiveScene().buildIndex == 5) 
+            {
+                PlayerPrefs.SetInt("gameover", 1);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            else
             {
                 Debug.Log("Player has to collect 3 keys");
             }

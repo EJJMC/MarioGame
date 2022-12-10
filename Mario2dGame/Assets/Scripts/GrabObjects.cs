@@ -10,7 +10,7 @@ public class GrabObjects : MonoBehaviour
     // Create Class and interface variables here..
     [SerializeField] public Transform grabDetect;
     [SerializeField] public Transform boxHolder;
-    [SerializeField] public Transform gunHolder;
+    [SerializeField] public Transform [] gunHolder;
     [SerializeField] public GameObject ShootBtn;
     public GameObject DropButton;
 
@@ -61,7 +61,16 @@ public class GrabObjects : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("gun"))
         {
-            RaycastHit2D grabCheck = Physics2D.Raycast(grabDetect.position, Vector2.right * transform.localScale.x, rayDistance);
+            PickClicked();
+            ShootBtn.SetActive(true);
+            isPicked = true;
+            DropButton.SetActive(true);
+            collision.gameObject.transform.parent = boxHolder;
+            collision.gameObject.transform.position = boxHolder.position;
+            collision.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+            collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
+            status = "released";
+            /*RaycastHit2D grabCheck = Physics2D.Raycast(grabDetect.position, Vector2.right * transform.localScale.x, rayDistance);
             if (grabCheck.collider != null)
             {
                 pickUpGun(grabCheck, true);
@@ -69,7 +78,7 @@ public class GrabObjects : MonoBehaviour
             {
                 Debug.Log("Cannot pickup once discarded");
                 //pickUpGun(grabCheck, false);
-            }
+            }*/
         }
     }
 
@@ -110,7 +119,7 @@ public class GrabObjects : MonoBehaviour
 
         DropButton.SetActive(false);
         isPicked = false;
-        grabCheck.collider.gameObject.transform.parent = grabCheck.collider.tag == "gun" ? gunHolder : null;
+        grabCheck.collider.gameObject.transform.parent = grabCheck.collider.tag == "gun" ? gunHolder[0] : null;
         grabCheck.collider.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
         status = "released";
     }
