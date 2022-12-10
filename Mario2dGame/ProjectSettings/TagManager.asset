@@ -16,6 +16,7 @@ TagManager:
   - gun
   - steppingstone
   - healthpoint
+  - lava
   layers:
   - Default
   - TransparentFX

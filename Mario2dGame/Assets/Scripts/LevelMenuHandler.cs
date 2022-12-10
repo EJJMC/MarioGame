@@ -14,13 +14,9 @@ public class LevelMenuHandler : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("start!");
         lastVisitedLevel = PlayerPrefs.GetInt("lastvisitedlevel");
-
-        Debug.Log("lastVisitedLevel: ");
-        Debug.Log(lastVisitedLevel);
         Level2.interactable = false;
-        Level2.interactable = lastVisitedLevel == 4 ? true : false;
+        Level2.interactable = lastVisitedLevel >= 4 ? true : false;
         Level3.interactable = lastVisitedLevel == 5 ? true : false;
 
     }
